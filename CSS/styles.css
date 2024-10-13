@@ -1,0 +1,61 @@
+/* For background video */
+#background-video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%; 
+    min-height: 100%;
+    z-index: -1; /* Ensure it stays behind other elements */
+    background-size: cover;
+    opacity: 1; /* Full opacity for the video */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    color: white; /* Ensure text is visible */
+}
+
+/* Header gradient text with #FF0000 red to #FFFF33 yellow */
+header h1 {
+    font-family: 'Creepster', cursive;
+    text-align: center;
+    padding: 20px;
+    font-size: 48px; /* Larger font size */
+    background: linear-gradient(90deg, #FF0000 0%, #FFFF33 100%); /* Red to yellow gradient */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; /* Ensure gradient fills the text */
+    background-clip: text;
+    color: transparent;
+}
+
+/* Table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px auto;
+    color: white;
+    background-color: transparent; /* Remove the dark background */
+}
+
+th, td {
+    padding: 15px; /* Add more padding for larger text */
+    text-align: center;
+    border: 1px solid white;
+}
+
+/* Table headers - larger orange text with no background and slight text shadow */
+th {
+    font-family: 'Creepster', cursive;
+    font-size: 28px; /* Increase header font size */
+    color: orange; /* Set header text color to orange */
+    background-color: transparent; /* Remove the grey background */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Add slight shadow for readability */
+}
+
+/* Table content - larger text with slight background for readability */
+td {
+    font-size: 24px; /* Increase table content font size */
+    background-color: rgba(0, 0, 0, 0.5); /* Slight background for data cells */
+}

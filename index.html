@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gambling Leaderboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&display=swap" rel="stylesheet">
+    <style>
+        /* For background video */
+        #background-video {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%; 
+            min-height: 100%;
+            z-index: -1; /* Ensure it stays behind other elements */
+            background-size: cover;
+            opacity: 1; /* Full opacity for the video */
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: white; /* Ensure text is visible */
+        }
+
+        /* Header gradient text with #FF0000 red to #FFFF33 yellow */
+        header h1 {
+            font-family: 'Creepster', cursive;
+            text-align: center;
+            padding: 20px;
+            font-size: 48px; /* Larger font size */
+            background: linear-gradient(90deg, #FF0000 0%, #FFFF33 100%); /* Red to yellow gradient */
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent; /* Ensure gradient fills the text */
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Table styles */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px auto;
+            color: white;
+            background-color: transparent; /* Remove the dark background */
+        }
+
+        th, td {
+            padding: 15px; /* Add more padding for larger text */
+            text-align: center;
+            border: 1px solid white;
+        }
+
+        /* Table headers - larger orange text with no background and slight text shadow */
+        th {
+            font-family: 'Creepster', cursive;
+            font-size: 28px; /* Increase header font size */
+            color: orange; /* Set header text color to orange */
+            background-color: transparent; /* Remove the grey background */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8); /* Add slight shadow for readability */
+        }
+
+        /* Table content - larger text with slight background for readability */
+        td {
+            font-size: 24px; /* Increase table content font size */
+            background-color: rgba(0, 0, 0, 0.5); /* Slight background for data cells */
+        }
+    </style>
+</head>
+<body>
+    <video autoplay loop muted id="background-video">
+        <source src="assets/Dragon-intermission-bg-blank.webm" type="video/webm">
+    </video>
+
+    <header>
+        <h1>Weekly Gambling Leaderboard</h1>
+    </header>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>Username</th>
+                <th>Wagered Amount</th>
+                <th>Favorite Game</th>
+                <th>Rank Level</th>
+                <th>Prize</th>
+            </tr>
+        </thead>
+        <tbody id="leaderboard-body">
+            <!-- This will be populated dynamically by JavaScript -->
+        </tbody>
+    </table>
+
+    <script>
+        function renderLeaderboard(leaderboardData) {
+            const tbody = document.getElementById('leaderboard-body');
+            leaderboardData.forEach(player => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${player.rank}</td>
+                    <td>${player.username}</td>
+                    <td>$${player.wagered.toLocaleString()}</td>
+                    <td>${player.favoriteGameTitle}</td>
+                    <td>${player.level}</td>
+                    <td>${player.prize}</td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        async function populateLeaderboard() {
+            // Updated static placeholder data for top 10
+            const leaderboardData = [
+                { rank: 1, username: 'PlayerOne', wagered: 1000, favoriteGameTitle: 'Roulette', level: 'Platinum', prize: '$25' },
+                { rank: 2, username: 'PlayerTwo', wagered: 900, favoriteGameTitle: 'Blackjack', level: 'Gold', prize: '$20' },
+                { rank: 3, username: 'PlayerThree', wagered: 800, favoriteGameTitle: 'Slots', level: 'Silver', prize: '$15' },
+                { rank: 4, username: 'PlayerFour', wagered: 700, favoriteGameTitle: 'Poker', level: 'Bronze', prize: '$10' },
+                { rank: 5, username: 'PlayerFive', wagered: 600, favoriteGameTitle: 'Dice', level: 'Bronze', prize: '$5' },
+                { rank: 6, username: 'PlayerSix', wagered: 550, favoriteGameTitle: 'Roulette', level: 'Bronze', prize: '$0' },
+                { rank: 7, username: 'PlayerSeven', wagered: 500, favoriteGameTitle: 'Blackjack', level: 'Bronze', prize: '$0' },
+                { rank: 8, username: 'PlayerEight', wagered: 450, favoriteGameTitle: 'Slots', level: 'Bronze', prize: '$0' },
+                { rank: 9, username: 'PlayerNine', wagered: 400, favoriteGameTitle: 'Poker', level: 'Bronze', prize: '$0' },
+                { rank: 10, username: 'PlayerTen', wagered: 350, favoriteGameTitle: 'Dice', level: 'Bronze', prize: '$0' }
+            ];
+
+            renderLeaderboard(leaderboardData);
+        }
+
+        // Call the function to populate leaderboard when page loads
+        populateLeaderboard();
+    </script>
+</body>
+</html>
